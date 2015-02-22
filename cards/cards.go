@@ -1,6 +1,9 @@
 package cards
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 type Card struct {
 	Suit byte
@@ -46,4 +49,11 @@ func (d Deck) Print() {
 		fmt.Print(" ")
 	}
 	fmt.Println()
+}
+
+func (d Deck) Shuffle() {
+	for i := range d.Cards {
+		j := rand.Intn(i + 1)
+		d.Cards[i], d.Cards[j] = d.Cards[j], d.Cards[i]
+	}
 }
