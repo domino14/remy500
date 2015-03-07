@@ -20,6 +20,11 @@ type DiscardPile struct {
 	cards cards.Deck
 }
 
+func CreatePlayer(username string) Player {
+	player := Player{Username: username}
+	return player
+}
+
 // InitGame initializes the game and deals the cards, etc.
 func InitGame(players []Player) {
 	var perPlayer int

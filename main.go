@@ -9,8 +9,8 @@ import (
 func main() {
 	rand.Seed(time.Now().UTC().UnixNano())
 	players := []rummy500.Player{}
-	players = append(players, rummy500.Player{Username: "foo"})
-	players = append(players, rummy500.Player{Username: "bar"})
+	players = append(players, rummy500.CreatePlayer("foo"))
+	players = append(players, rummy500.CreatePlayer("bar"))
 
 	rummy500.InitGame(players)
 }
