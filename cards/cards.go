@@ -25,7 +25,7 @@ func GenerateStandardDeck() Deck {
 	return d
 }
 
-func (c Card) print() {
+func (c Card) Print() {
 	switch {
 	case c.Rank == 1:
 		fmt.Printf("%c", 'A')
@@ -45,7 +45,7 @@ func (c Card) print() {
 
 func (d Deck) Print() {
 	for _, card := range d.Cards {
-		card.print()
+		card.Print()
 		fmt.Print(" ")
 	}
 	fmt.Println()
@@ -56,4 +56,14 @@ func (d Deck) Shuffle() {
 		j := rand.Intn(i + 1)
 		d.Cards[i], d.Cards[j] = d.Cards[j], d.Cards[i]
 	}
+}
+
+func (d *Deck) DealCard() Card {
+	var card Card
+	card, d.Cards = d.Cards[len(d.Cards)-1], d.Cards[:len(d.Cards)-1]
+	return card
+}
+
+func (d *Deck) AddCard(card Card) {
+	d.Cards = append(d.Cards, card)
 }
