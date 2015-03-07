@@ -1,6 +1,7 @@
 package cards
 
 import (
+	"bytes"
 	"fmt"
 	"math/rand"
 )
@@ -25,30 +26,31 @@ func GenerateStandardDeck() Deck {
 	return d
 }
 
-func (c Card) Print() {
+func (c Card) String() string {
 	switch {
 	case c.Rank == 1:
-		fmt.Printf("%c", 'A')
+		return fmt.Sprintf("A%c", c.Suit)
 	case c.Rank > 1 && c.Rank < 10:
-		fmt.Print(c.Rank)
+		return fmt.Sprintf("%d%c", c.Rank, c.Suit)
 	case c.Rank == 10:
-		fmt.Printf("%c", 'T')
+		return fmt.Sprintf("T%c", c.Suit)
 	case c.Rank == 11:
-		fmt.Printf("%c", 'J')
+		return fmt.Sprintf("J%c", c.Suit)
 	case c.Rank == 12:
-		fmt.Printf("%c", 'Q')
+		return fmt.Sprintf("Q%c", c.Suit)
 	case c.Rank == 13:
-		fmt.Printf("%c", 'K')
+		return fmt.Sprintf("K%c", c.Suit)
 	}
-	fmt.Printf("%c", c.Suit)
+	return ""
 }
 
-func (d Deck) Print() {
+func (d Deck) String() string {
+	var buffer bytes.Buffer
 	for _, card := range d.Cards {
-		card.Print()
-		fmt.Print(" ")
+		buffer.WriteString(card.String())
+		buffer.WriteString(" ")
 	}
-	fmt.Println()
+	return buffer.String()
 }
 
 func (d Deck) Shuffle() {
@@ -58,6 +60,7 @@ func (d Deck) Shuffle() {
 	}
 }
 
+// DealCard deals a card to the receiving deck (r).
 func (d *Deck) DealCard() Card {
 	var card Card
 	card, d.Cards = d.Cards[len(d.Cards)-1], d.Cards[:len(d.Cards)-1]

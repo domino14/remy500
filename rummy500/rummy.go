@@ -31,6 +31,7 @@ func InitGame(players []Player) {
 	}
 	deck := cards.GenerateStandardDeck()
 	deck.Shuffle()
+	fmt.Println("Generated deck", deck)
 	dealCards(players, deck, perPlayer)
 	for _, p := range players {
 		p.PrintHand()
@@ -42,9 +43,7 @@ func dealCards(players []Player, deck cards.Deck, perPlayer int) {
 	for i := 0; i < perPlayer; i++ {
 		for _, p := range players {
 			card := deck.DealCard()
-			fmt.Print("Dealt card ")
-			card.Print()
-			fmt.Println()
+			fmt.Println("Dealt card", card)
 			p.Hand.AddCard(card)
 			fmt.Println("Length of player", p, "hand is", len(p.Hand.Cards))
 		}
@@ -52,6 +51,5 @@ func dealCards(players []Player, deck cards.Deck, perPlayer int) {
 }
 
 func (p Player) PrintHand() {
-	fmt.Print("Player ", p.Username, " has hand ")
-	p.Hand.Print()
+	fmt.Println("Player", p.Username, "has hand", p.Hand)
 }
