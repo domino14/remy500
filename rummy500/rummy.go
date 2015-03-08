@@ -46,11 +46,9 @@ func InitGame(players []Player) {
 // dealCards deals cards to a set of players.
 func dealCards(players []Player, deck cards.Deck, perPlayer int) {
 	for i := 0; i < perPlayer; i++ {
-		for _, p := range players {
+		for j, _ := range players {
 			card := deck.DealCard()
-			fmt.Println("Dealt card", card)
-			p.Hand.AddCard(card)
-			fmt.Println("Length of player", p, "hand is", len(p.Hand.Cards))
+			players[j].Hand.AddCard(card)
 		}
 	}
 }

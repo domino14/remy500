@@ -69,5 +69,4 @@ func (d *Deck) DealCard() Card {
 
 func (d *Deck) AddCard(card Card) {
 	d.Cards = append(d.Cards, card)
-	fmt.Println("Set d.Cards to", d.Cards, &d)
 }
