@@ -60,7 +60,6 @@ func (d Deck) Shuffle() {
 	}
 }
 
-// DealCard deals a card to the receiving deck (r).
 func (d *Deck) DealCard() Card {
 	var card Card
 	card, d.Cards = d.Cards[len(d.Cards)-1], d.Cards[:len(d.Cards)-1]
